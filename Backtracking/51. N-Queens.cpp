@@ -4,6 +4,24 @@
 */
 
 
+/*
+	MY YOUTUBE VIDEO ON THIS Qn : https://www.youtube.com/watch?v=FOY49yQcbQ4
+    	Company Tags  : Accolite, Amazon, Visa, MAQ Software, Amdocs, Twitter, Qualcomm, Google 
+    	Leetcode Link : https://leetcode.com/problems/n-queens/
+*/
+
+/*
+    Time complexity for Approach-1 : O(N!)
+    Unlike the brute force approach, we will only place queens on squares that aren't under attack.
+    For the first queen, we have N options. For the next queen, we won't attempt to place it in the
+    same column as the first queen, and there must be at least one square attacked diagonally by the
+    first queen as well. Thus, the maximum number of squares we can consider for the second queen is
+    (N−2). For the third queen, we won't attempt to place it in 2 columns already occupied by the first
+    2 queens, and there must be at least two squares attacked diagonally from the first 2 queens.
+    Thus, the maximum number of squares we can consider for the third queen is (N-4).
+    This pattern continues, resulting in an approximate time complexity of O(N!)
+*/
+
 /*************************************************************** C++ *************************************************************************/
 //Approach-1 (Simple dfs)
 //T.C : O(N!) - Read the reason above
@@ -80,6 +98,73 @@ public:
         //For, n = 3, board = {"...", "...", "..."} initially
         
         solve(board, 0);
+        
+        return result;
+    }
+};
+
+//Approach-2
+//T.C : O(N!) in worst case it explores all possible configurations
+//S.C : O(N) for result and also for storing, cols, diags and antidiags
+class Solution {
+public:
+    vector<vector<string>> result;
+    void solve(vector<string>& board, int row, unordered_set<int>& cols, unordered_set<int>& diags, unordered_set<int>& antiDiags) {
+        if(row == board.size()) {
+            result.push_back(board);
+            return;
+        }
+        
+        /*
+            For a square (i, j) :
+            Diagonally (i-j)      is constant
+            Anti diagonally (i+j) is constant
+            
+            We can use this to find which square(i, j)
+            has a risk of being attacked by another queen
+            placed already in 'diagonal', or 'anti-diagonal'
+            or 'column'
+        */
+        
+        for(int col = 0; col<board.size(); col++) {
+            int diag_id       = row-col;
+            int anti_diag_id  = row+col;
+            
+            /*
+                If the col, or diagonal or anti_diaonal
+                are used, means one of them has a Queen placed
+                already which can attack, so look for other column
+            */
+            if(cols.find(col) != cols.end() ||
+              diags.find(diag_id) != diags.end() ||
+              antiDiags.find(anti_diag_id) != antiDiags.end())
+                continue;
+            
+            cols.insert(col);
+            diags.insert(diag_id);
+            antiDiags.insert(anti_diag_id);
+            board[row][col] = 'Q';
+            
+            
+            solve(board, row+1, cols, diags, antiDiags);
+
+            cols.erase(col);
+            diags.erase(diag_id);
+            antiDiags.erase(anti_diag_id);
+            board[row][col] = '.';
+        }
+    }
+    vector<vector<string>> solveNQueens(int n) {
+        if(n == 0)
+            return {};
+        vector<string> board(n, string(n, '.')); 
+        //For, n = 3, board = {"...", "...", "..."} initially
+        
+        int start_row = 0;
+        unordered_set<int> cols;
+        unordered_set<int> diags;
+        unordered_set<int> antiDiags;
+        solve(board, start_row, cols, diags, antiDiags);
         
         return result;
     }
