@@ -10,3 +10,10 @@ Example :
 	
 	Qns on Leetcode: 2215
 	Leetcode - : Find the Difference of Two Arrays
+<br\>
+
+### :memo: Heap :1234:
+```
+priority_queue<int> maxHeap; // NOTE: default is max heap
+
+priority_queue<int, vector<int> , greater<int>> minHeap;  // NOTE: min heap
