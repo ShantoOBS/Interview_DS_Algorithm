@@ -1,4 +1,4 @@
-### :Max Heap:
+### :memo: Max Heap :1234:
 ```
 priority_queue<int> maxHeap; // NOTE: default is max heap
 
