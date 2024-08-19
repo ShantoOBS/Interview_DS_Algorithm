@@ -14,7 +14,7 @@ public:
 
         string result = "";
         //By default stringstream tokenizes on ' ' (space character)
-        //Know more : https://github.com/MAZHARMIK/Cpp-STL-Quick-Help/blob/main/README.md
+       
         while(ss >> token) {
             result = token + " " + result;
         }
