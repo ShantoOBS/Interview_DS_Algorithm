@@ -1,3 +1,14 @@
+```javascript []
+console.log('Hello world!')
+```
+```python []
+print('Hello world!')
+```
+```ruby []
+puts 'Hello world!'
+```
+
+
 ### :memo: std::set_difference and std::back_inserter :1234:
 ```c++
 set_difference -> Copies the elements from the sorted s1 which are not found in the sorted s2 to a container in sorted order
