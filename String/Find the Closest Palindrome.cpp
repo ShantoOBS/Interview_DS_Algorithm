@@ -1,50 +1,130 @@
+/*     Scroll below to see JAVA code also    */
 /*
-    Company Tags                : google, Microsoft, Amazon, Paypal, Oracle
-    Leetcode Qn Link            : https://leetcode.com/problems/find-the-closest-palindrome/description/?envType=daily-question&envId=2024-08-24
+    Company Tags                : YELP
+    Leetcode Link               : https://leetcode.com/problems/find-the-closest-palindrome
 */
 
-/************************************************************ C++ ************************************************************/
-
-
+/*********************************************************************** C++ ************************************************************/
+//Approach (Using simple observation)
+//T.C : O(n)
+//S.C : O(1) //Ignoring space taken during string copy internally
 class Solution {
-    public long findNearestPallindrome(long firstHalf, boolean isOdd){
-        long res = firstHalf; //12 21 -> 1221, 12 2 21 -> 12221
-        if(isOdd){
-            firstHalf/=10;
+public:
+    long halfToPalindrome(long left, bool even) {
+        long resultNum = left;
+        if (!even) {
+            left = left / 10;
         }
-        while(firstHalf>0){
-            res = res *10 + (firstHalf%10);
-            firstHalf/=10;
+
+        while (left > 0) {
+            int digit = left % 10;
+            resultNum = (resultNum * 10) + digit;
+            left /= 10;
         }
-        return res;
+        return resultNum;
     }
-    public String nearestPalindromic(String n) {
-        ArrayList<Long> list = new ArrayList<Long>();
-        int len = n.length();
-        boolean isOdd = (len%2!=0);
-        //copy first half
-        int mid = (len%2==0)?(len/2):(len/2+1);
-        Long firstHalf = Long.parseLong(n.substring(0,mid));
-        list.add(findNearestPallindrome(firstHalf,isOdd));
-        list.add(findNearestPallindrome(firstHalf+1,isOdd));
-        list.add(findNearestPallindrome(firstHalf-1,isOdd));
-        list.add((long)Math.pow(10,len-1)-1); //all 9's
-        list.add((long)Math.pow(10,len)+1); //101,1001,10001...
-        long num = Long.parseLong(n);
-        long minDiff = Long.MAX_VALUE;
-        long res = Long.MAX_VALUE;
-        for(Long element : list){
-            if(element == num) continue;
-            long curDiff = Math.abs(element - num);
-            if(curDiff < minDiff){
-                res = element;
-                minDiff = curDiff;
-            }else if(curDiff == minDiff){
-                res = Math.min(res,element);
+
+    string nearestPalindromic(string n) {
+        int len = n.size();
+        int mid = len / 2;
+        long firstHalf = stol(n.substr(0, len % 2 == 0 ? mid : mid + 1));
+        /*
+          Generate possible palindromic candidates:
+          1. Palindrome by mirroring the first half.
+          2. Palindrome by mirroring the first half + 1.
+          3. Palindrome by mirroring the first half - 1.
+          4. Handle edge cases by considering palindromes of the form 999...
+             and 100...001
+
+          I was not able to catch the 3rd and 4th edge case :-( . But it's ok , I got to learn something.
+        */
+        vector<long> possibleResults;
+        possibleResults.push_back(halfToPalindrome(firstHalf, len % 2 == 0));
+        possibleResults.push_back(halfToPalindrome(firstHalf + 1, len % 2 == 0));
+        possibleResults.push_back(halfToPalindrome(firstHalf - 1, len % 2 == 0));
+        possibleResults.push_back((long)pow(10, len - 1) - 1);
+        possibleResults.push_back((long)pow(10, len) + 1);
+
+        long diff         = LONG_MAX;
+        long result       = 0;
+        long originalNum  = stol(n);
+
+        for (long &num : possibleResults) {
+            if (num == originalNum) continue;
+            if (abs(num - originalNum) < diff) {
+                diff = abs(num - originalNum);
+                result = num;
+            } else if (abs(num - originalNum) == diff) {
+                result = min(result, num);
             }
         }
-        return String.valueOf(res);
 
+        return to_string(result);
     }
-    
+};
+
+
+
+/*********************************************************************** JAVA ************************************************************/
+//Approach (Using simple observation)
+//T.C : O(n)
+//S.C : O(1) //Ignoring space taken during string copy internally
+class Solution {
+
+    // Helper function to create a palindrome by mirroring the first half
+    private long halfToPalindrome(long left, boolean even) {
+        long resultNum = left;
+        if (!even) {
+            left = left / 10;
+        }
+
+        // Mirroring the first half to form a palindrome
+        while (left > 0) {
+            int digit = (int) (left % 10);
+            resultNum = (resultNum * 10) + digit;
+            left /= 10;
+        }
+        return resultNum;
+    }
+
+    public String nearestPalindromic(String n) {
+        int len = n.length();
+        int mid = len / 2;
+        long firstHalf = Long.parseLong(n.substring(0, len % 2 == 0 ? mid : mid + 1));
+
+        /*
+            Generate possible palindromic candidates:
+            1. Palindrome by mirroring the first half.
+            2. Palindrome by mirroring the first half + 1.
+            3. Palindrome by mirroring the first half - 1.
+            4. Handle edge cases by considering palindromes of the form 999...
+               and 100...001
+  
+            I was not able to catch the 3rd and 4th edge case :-( . But it's ok , I got to learn something.
+        */
+        // Generate possible palindromic candidates
+        List<Long> possibleResults = new ArrayList<>();
+        possibleResults.add(halfToPalindrome(firstHalf, len % 2 == 0));
+        possibleResults.add(halfToPalindrome(firstHalf + 1, len % 2 == 0));
+        possibleResults.add(halfToPalindrome(firstHalf - 1, len % 2 == 0));
+        possibleResults.add((long) Math.pow(10, len - 1) - 1);  // Edge case like 999...
+        possibleResults.add((long) Math.pow(10, len) + 1);      // Edge case like 100...001
+
+        long diff = Long.MAX_VALUE;
+        long result = 0;
+        long originalNum = Long.parseLong(n);
+
+        // Find the closest palindrome
+        for (long num : possibleResults) {
+            if (num == originalNum) continue;
+            if (Math.abs(num - originalNum) < diff) {
+                diff = Math.abs(num - originalNum);
+                result = num;
+            } else if (Math.abs(num - originalNum) == diff) {
+                result = Math.min(result, num);
+            }
+        }
+
+        return String.valueOf(result);
+    }
 }
