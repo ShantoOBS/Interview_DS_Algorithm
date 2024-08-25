@@ -5,7 +5,8 @@
 
 /********************************************** C++ **********************************************/
 //Approach (Post order traversal)
-//T.C : 
+//T.C : O(n)
+//S.C : O(n)
 
 /**
  * Definition for a binary tree node.
