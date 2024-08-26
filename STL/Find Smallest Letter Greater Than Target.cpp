@@ -1,4 +1,10 @@
-//Approach-3 (Using C++ STL upper_bound (binary search internally)) - TC : O(log(n))
+/*
+
+    Company Tags                : LinkedIn
+    Leetcode Link               : https://leetcode.com/problems/find-smallest-letter-greater-than-target/
+*/
+
+//Approach (Using C++ STL upper_bound (binary search internally)) - TC : O(log(n))
 class Solution {
 public:
     char nextGreatestLetter(vector<char>& letters, char target) {
