@@ -3,14 +3,10 @@
 
 class Solution {
 public:
-    string defangIPaddr(string address) 
+    string defangIPaddr(string s) 
     {
-        string result; 
-        for (char c : address) 
-        {
-            if (c == '.') result += "[.]"; 
-            else result += c;
-        }
-        return result; 
+          auto rgx = regex("\\.");
+          string ans=  regex_replace(s, rgx, "[.]");
+           return ans;
     }        
 };
