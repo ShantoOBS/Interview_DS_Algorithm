@@ -1,34 +1,64 @@
+/*      Scroll below to see JAVA code also    */
 /*
-    Company Tags                : 
-    Leetcode Link               : https://practice.geeksforgeeks.org/problems/flattening-a-linked-list/1
+   
+    Company Tags                : AMAZON
+    Leetcode Link               : https://leetcode.com/problems/merge-in-between-linked-lists/
 */
 
 
+/*************************************************************************** C++ **********************************************************/
+//T.C : O(m+n)
+//S.C : O(1)
 class Solution {
 public:
     ListNode* mergeInBetween(ListNode* list1, int a, int b, ListNode* list2) {
-
-       int ct=0;
-
-       ListNode * last=list1;
-       ListNode * head=list1;
-
-        while(ct<=b){
-
-            if(ct<a-1){
-                list1=list1->next;
-            }
-            last=last->next;
-            ct++;
-        }
-
-        list1->next=list2;
-
-        while(list2->next!=NULL) list2=list2->next;
-
-        list2->next=last;
-
-        return head;
+        ListNode* left  = NULL;
+        ListNode* right = list1;
         
+        for(int i = 0; i <= b; i++) {
+            if(i == a-1) {
+                left = right;
+            }
+            right = right->next;
+        }
+        
+        left->next = list2;
+        
+        ListNode* temp = list2;
+        while(temp && temp->next) {
+            temp = temp->next;
+        }
+        
+        temp->next = right;
+        
+        return list1;  
     }
 };
+
+/*************************************************************************** JAVA **************************************************************/
+//T.C : O(m+n)
+//S.C : O(1)
+class Solution {
+    public ListNode mergeInBetween(ListNode list1, int a, int b, ListNode list2) {
+        ListNode left = null;
+        ListNode right = list1;
+        
+        for (int i = 0; i <= b; i++) {
+            if (i == a - 1) {
+                left = right;
+            }
+            right = right.next;
+        }
+        
+        left.next = list2;
+        
+        ListNode temp = list2;
+        while (temp != null && temp.next != null) {
+            temp = temp.next;
+        }
+        
+        temp.next = right;
+        
+        return list1;
+    }
+}
