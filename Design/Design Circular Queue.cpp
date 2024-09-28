@@ -1,6 +1,5 @@
 /*        Scroll below to see JAVA code also        */
 /*
-    MY YOUTUBE VIDEO IN THIS QN : 
     Company Tags  : Google, Facebook, Apple, Goldman Sachs, Amazon
     Leetcode Link : https://leetcode.com/problems/design-circular-queue/
 */
