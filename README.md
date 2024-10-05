@@ -6,4 +6,5 @@
   <li><a href="https://github.com/ShantoOBS/Interview_DS_Algorithm/tree/main/Linked%20List">Linked List :link:</a></li>
   <li><a href="https://github.com/ShantoOBS/Interview_DS_Algorithm/tree/main/Trie">Trie 🌳</a></li>
   <li><a href="https://github.com/ShantoOBS/Interview_DS_Algorithm/tree/main/Recursion">Recursion :cyclone:</a></li>
+   <li><a href="https://github.com/ShantoOBS/Interview_DS_Algorithm/tree/main/Two%20Pointer"> Two Pointer :slot_machine:</a></li>
 </ul>
