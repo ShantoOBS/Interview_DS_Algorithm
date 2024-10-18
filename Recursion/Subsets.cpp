@@ -41,6 +41,45 @@ public:
 };
 
 
+//Approach-1
+//T.C : O(2^n)
+//S.C :  O(2^n*length of each subset) to store each subset
+
+class Solution {
+public:
+    
+    vector<vector<int>>result;
+
+    void solve(vector<int>&nums,vector<int>subset,int index){
+        
+        result.push_back(subset);
+
+        for(int i=index;i<nums.size();i++){
+           
+            subset.push_back(nums[i]);
+
+            solve(nums,subset,i+1);
+
+            subset.pop_back();
+
+        }
+
+    }
+    vector<vector<int>> subsets(vector<int>& nums) {
+
+
+        vector<int>temp;
+        solve(nums,temp,0);
+
+        sort(result.begin(),result.end());
+
+        return result;
+        
+    }
+};
+
+
+
 
 /************************************************************ JAVA ************************************************************/
 //Approach-1
