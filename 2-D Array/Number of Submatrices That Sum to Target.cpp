@@ -1,13 +1,10 @@
 /*
-    YOUTUBE VIDEO ON THIS Qn : https://www.youtube.com/watch?v=-SWrz90jCUM
+
     Company Tags                : Facebook, Amazon, Netflix, Apple, Google
     Leetcode Link               : https://leetcode.com/problems/number-of-submatrices-that-sum-to-target/
     
+ */   
     
-    
-Note : Please first see "Subarray Sum Equals K: Leetcode : 560" https://github.com/MAZHARMIK/Interview_DS_Algo/blob/master/Arrays/Subarray%20Sum%20Equals%20K%20(O(n)).cpp
-*/
-
 /******************************************************************** C++ *********************************************************************************/
 //Approach-1 (Brute Force)
 //T.C : O(m^3 * n^3)
