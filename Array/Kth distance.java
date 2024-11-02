@@ -1,0 +1,81 @@
+/*
+    Company Tags      : Amazon
+    GFG Link          : https://www.geeksforgeeks.org/problems/kth-distance3757/1
+*/
+************************************************************ JAVA ************************************************************
+// T.C : O(n)
+// S.C : O(k+1)
+
+//{ Driver Code Starts
+// Initial Template for Java
+import java.io.*;
+import java.lang.*;
+import java.util.*;
+
+
+// } Driver Code Ends
+// User function Template for Java
+
+class Solution {
+    public boolean checkDuplicatesWithinK(int[] arr, int k) {
+        // your code
+        
+        Set<Integer> st= new HashSet();
+        
+        for(int i=0;i<k+1;i++){
+            st.add(arr[i]);
+        }
+        
+        if(st.size()<k+1)return true;
+        
+        
+        int i=k+1,j=0;
+        
+        while(i<arr.length){
+            
+            st.remove(arr[j]);
+            st.add(arr[i]);
+            
+             if(st.size()<k+1)return true;
+             
+             i++;
+             j++;
+        }
+        
+        return false;
+    }
+}
+
+//{ Driver Code Starts.
+
+class GFG {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int t = Integer.parseInt(br.readLine());
+        while (t-- > 0) {
+            String line = br.readLine();
+            String[] tokens = line.split(" ");
+
+            // Create an ArrayList to store the integers
+            ArrayList<Integer> array = new ArrayList<>();
+
+            // Parse the tokens into integers and add to the array
+            for (String token : tokens) {
+                array.add(Integer.parseInt(token));
+            }
+            int k = Integer.parseInt(br.readLine());
+            int[] arr = new int[array.size()];
+            int idx = 0;
+            for (int i : array) arr[idx++] = i;
+            Solution obj = new Solution();
+            boolean res = obj.checkDuplicatesWithinK(arr, k);
+            if (res)
+                System.out.println("true");
+            else
+                System.out.println("false");
+
+            System.out.println("~");
+        }
+    }
+}
+// } Driver Code Ends
