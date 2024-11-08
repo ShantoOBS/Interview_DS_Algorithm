@@ -9,20 +9,28 @@
 
 class Solution {
   public:
-    int minRepeats(string& A, string& B) {
+    int minRepeats(string& s1, string& s2) {
         // code here
         
-       string rep = A;
-        int cnt=1;
-        while(A.size()<B.size()){
-            A+=rep;
-            cnt++;
+        int ans=1;
+        
+        string rep=s1;
+        
+        while(s1.size()<s2.size()){
+            s1+=rep;
+            ans++;
         }
-       
-        if(A.find(B)!=-1) return cnt;
-         A+=rep;
-         cnt++;
-        if(A.find(B)!=-1) return cnt;
+        
+        if(s1.find(s2)!=-1)return ans;
+        
+        s1+=rep;
+        
+        ans++;
+        
+        if(s1.find(s2)!=-1)return ans;
+        
         return -1;
+        
     }
+    
 };
