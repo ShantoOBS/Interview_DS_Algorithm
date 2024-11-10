@@ -5,6 +5,71 @@
 */
 
 /******************************************************** C++ ********************************************************/
+
+//Approach - Simple using OR property and sliding window
+//T.C : O(n)
+//S.C : O(1)
+
+class Solution {
+public:
+
+    void add_bit(vector<int>&bit,int n){
+
+        for(int i=0;i<32;i++){
+
+            if( n & (1<<i) ) bit[i]++;
+        }
+    }
+
+    void remove_bit(vector<int>&bit,int n){
+
+        for(int i=0;i<32;i++){
+
+            if( n & (1<<i) ) bit[i]--;
+       }
+    }
+
+    int get_binary_to_dec(vector<int>bit){
+
+        int num=0;
+
+        for(int i=0;i<32;i++){
+            
+            if(bit[i]>0) num|=(1<<i);
+        }
+
+        return num;
+    }
+  
+    int minimumSubarrayLength(vector<int>& nums, int k) {
+         
+         int n=nums.size();
+
+         vector<int>bit(32,0);
+
+         int i=0,j=0;
+
+         int ans=INT_MAX;
+
+         while(j<n){
+
+             add_bit(bit,nums[j]);
+
+             while(i<=j && get_binary_to_dec(bit)>=k){
+
+                   ans=min(ans,j-i+1);
+                   remove_bit(bit,nums[i]);
+                   i++;
+             }
+
+             j++;
+         }
+           
+
+        return ans==INT_MAX ? -1 :ans;   
+    }
+};
+
 //Approach - Simple using OR property and sliding window
 //T.C : O(n)
 //S.C : O(1)
