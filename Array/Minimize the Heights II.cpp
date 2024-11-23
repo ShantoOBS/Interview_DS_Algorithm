@@ -1,6 +1,6 @@
 /*
     Company Tags                  : Microsoft, Adobe
-    GFG Link                      : https://www.geeksforgeeks.org/problems/minimize-the-heights-i/1
+    GFG Link                      : https://www.geeksforgeeks.org/batch/gfg-160-problems/track/arrays-gfg-160/problem/minimize-the-heights3351
 */
 /**************************************************************** C++ ****************************************************************/
 //Approach-1 
