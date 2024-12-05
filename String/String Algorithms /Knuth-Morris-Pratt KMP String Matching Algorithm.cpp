@@ -14,6 +14,75 @@
 //Approach-2 (KMP Algorithm)
 //T.C : O(m+n)
 //S.C : O(m) where m is the length of pattern
+class Solution {
+  public:
+    vector<int> search(string& pat, string& txt) {
+        // code here
+        vector<int>ans;
+        
+        int n=pat.size();
+        int m=txt.size();
+        
+        int j=1;
+        
+        vector<int>lsp(n);
+        
+        lsp[0]=0;
+        
+        int len=0;
+        
+        while(j<n){
+            
+            if(pat[j]==pat[len]){
+                len++;
+                lsp[j]=len;
+                j++;
+                
+            }
+            else {
+                if(len!=0)len=lsp[len-1];
+                else {
+                    lsp[j]=0;
+                    j++;
+                }
+            }
+            
+        }
+        
+        
+        int i=0;
+        j=0;
+        
+        while(i<m){
+            
+            
+            if(txt[i]==pat[j]){
+                i++;
+                j++;
+            }
+            
+            if(j==n){
+                ans.push_back(i-j);
+                j=lsp[j-1];
+            }
+            else if(txt[i]!=pat[j]){
+                if(j>0)j=lsp[j-1];
+                else{
+                    i++;
+                }
+            }
+        }
+        
+        
+        return ans;
+        
+        
+    }
+};
+
+//Approach-2 (KMP Algorithm)
+//T.C : O(m+n)
+//S.C : O(m) where m is the length of pattern
 class Solution
 {
     public:
