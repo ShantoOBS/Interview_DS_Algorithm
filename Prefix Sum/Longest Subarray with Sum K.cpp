@@ -1,9 +1,9 @@
 /*
     Company Tags                : Amazon
-    Leetcode Link               : https://leetcode.com/problems/minimize-xor
+    GFG Link                    : https://www.geeksforgeeks.org/problems/longest-sub-array-with-sum-k0809/1
 */
 /******************************************************** C++ ********************************************************/
-//Approach-1 (Starting from num1 and then forming result)
+//Approach-1
 //T.C : O(n)
 //S.C : O(n)
 class Solution {
