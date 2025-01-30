@@ -163,3 +163,88 @@ public:
         return result;
     }
 };
+
+
+/*
+    	Company Tags  : Accolite, Amazon, Visa, MAQ Software, Amdocs, Twitter, Qualcomm, Google 
+    	GFG Link      : https://www.geeksforgeeks.org/problems/n-queen-problem0315/1
+*/
+
+
+/*************************************************************** C++ *************************************************************************/
+class Solution {
+  public:
+    vector<vector<int>>ans;
+    
+    vector<int> get_ans(vector<string>&board){
+         
+          vector<int>temp;
+          
+          int n=board.size();
+          
+          for(int i=0;i<n;i++){
+              
+               for(int j=0;j<n;j++){
+                   
+                     if(board[i][j]=='Q'){
+                         
+                         temp.push_back(j+1);
+                     }
+               }
+          }
+          
+          return temp;
+    }
+    
+    
+    
+    bool isValid(vector<string>& board, int row, int col) {
+        //look for up
+        for(int i = row; i>=0; i--) {
+            if(board[i][col] == 'Q')
+                return false;
+        }
+        
+        //check left diagonal upwards
+        for(int i = row, j = col; i>=0 && j >= 0; i--, j--) {
+            if(board[i][j] == 'Q')
+                return false;
+        }
+        
+        //check right diagonal upwards
+        for(int i = row, j = col; i>=0 && j<board.size(); i--, j++) {
+            if(board[i][j] == 'Q')
+                return false;
+        }
+
+        return true;
+    }
+    void solve(vector<string>& board, int row) {
+        
+        if(row == board.size()) {
+            vector<int>v=get_ans(board);
+            ans.push_back(v);
+            return;
+        }
+  
+        for(int i = 0; i<board.size(); i++) {
+            if(isValid(board, row, i)) {
+                board[row][i] = 'Q';
+                
+                solve(board, row+1);
+                
+                board[row][i] = '.';
+            }
+        }
+    }
+    
+    vector<vector<int>> nQueen(int n) {
+        // code here
+        vector<string>board(n,string(n,'.'));
+        
+        solve(board,0);
+        
+        return ans;
+
+    }
+};
