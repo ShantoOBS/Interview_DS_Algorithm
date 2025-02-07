@@ -5,7 +5,7 @@
 */
 
 /********************************************** C++ **********************************************/
-
+// Recarsive Approach 
 //T.C : O(n)
 //S.C : O(n)
 /**
@@ -38,6 +38,42 @@ public:
 
         return ans;
         
+    }
+};
+
+// Iterative Approach 
+//T.C : O(n)
+//S.C : O(n)
+
+class Solution {
+  public:
+    // Function to return a list containing the inorder traversal of the tree.
+    vector<int> inOrder(Node* root) {
+        // Your code here
+        
+        stack<Node * > st;
+        
+        vector<int>inorder;
+        
+        Node * temp=root;
+        
+        while(true){
+            
+            if(temp!=NULL){
+                st.push(temp);
+                temp=temp->left;
+                
+            }else{
+                if(st.empty()==true)break;
+                temp=st.top();
+                st.pop();
+                inorder.push_back(temp->data);
+                temp=temp->right;
+            }
+            
+        }
+        
+        return inorder;
     }
 };
 
