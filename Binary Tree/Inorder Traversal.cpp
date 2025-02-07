@@ -1,16 +1,13 @@
 
 /*
-    Company Tags                :
+    Company Tags                : Amazon, Snapdeal, Adobe
     Leetcode Link               : https://leetcode.com/problems/binary-tree-inorder-traversal/
 */
 
 /********************************************** C++ **********************************************/
-//Approach (Post order traversal)
+
 //T.C : O(n)
 //S.C : O(n)
-
-
-
 /**
  * Definition for a binary tree node.
  * struct TreeNode {
@@ -43,3 +40,28 @@ public:
         
     }
 };
+
+/**********************************************JAVA **********************************************/
+//T.C : O(n)
+//S.C : O(n)
+class Solution {
+    ArrayList<Integer>ans=new ArrayList<>();
+    
+    void solve(Node root) {
+        
+        if(root==null)return ;
+        
+        solve(root.left);
+        ans.add(root.data);
+        solve(root.right);
+    }
+     
+    ArrayList<Integer> inOrder(Node root) {
+        // Code
+       
+        
+        solve(root);
+        
+        return ans;
+    }
+}
