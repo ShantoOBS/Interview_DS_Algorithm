@@ -4,7 +4,7 @@
 */
 
 /********************************************** C++ **********************************************/
-//Approach (Pre order traversal)
+//Recarsive Approach 
 //T.C : O(n)
 //S.C : O(n)
 
@@ -40,3 +40,34 @@ public:
         
     }
 };
+
+//Iterative Approach 
+//T.C : O(n)
+//S.C : O(n)
+
+class Solution {
+  public:
+
+    // Function to return a list containing the preorder traversal of the tree.
+    vector<int> preorder(Node* root) {
+        // write code here
+        stack<Node*>st;
+        vector<int>ans;
+        st.push(root);
+        
+        while(!st.empty()){
+            
+            Node * temp=st.top();
+            st.pop();
+            ans.push_back(temp->data);
+            
+            if(temp->right!=NULL)st.push(temp->right);
+            if(temp->left!=NULL)st.push(temp->left);
+            
+        }
+        
+        return ans;
+    }
+};
+
+
