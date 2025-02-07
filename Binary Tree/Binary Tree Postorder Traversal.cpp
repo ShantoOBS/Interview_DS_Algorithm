@@ -4,7 +4,7 @@
 */
 
 /********************************************** C++ **********************************************/
-//Approach (Post order traversal)
+//Recarsive Approach 
 //T.C : O(n)
 //S.C : O(n)
 
@@ -39,3 +39,38 @@ public:
         
     }
 };
+// Iterative Approach using two stack data structure
+//T.C : O(n)
+//S.C : O(n)
+class Solution {
+  public:
+    // Function to return a list containing the postorder traversal of the tree.
+    vector<int> postOrder(Node* root) {
+        // Your code here
+        stack<Node *>st1,st2;
+        
+        st1.push(root);
+        
+        while(!st1.empty()){
+            Node * temp=st1.top();
+            st1.pop();
+            st2.push(temp);
+            
+            if(temp->left!=NULL)st1.push(temp->left);
+            if(temp->right!=NULL)st1.push(temp->right);
+            
+        }
+        
+        vector<int>postorder;
+        
+        while(!st2.empty()){
+            
+              postorder.push_back(st2.top()->data);
+              st2.pop();
+        }
+        
+        return postorder;
+    }
+};
+
+
