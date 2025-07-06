@@ -14,28 +14,26 @@
 //S.C :  O(2^n*length of each subset) to store each subset
 class Solution {
 public:
-    set<vector<int>>st;
+    vector<vector<int>>ans;
     void solve(int index,vector<int>&sub,vector<int>&nums){
+       
+        ans.push_back(sub);
 
-          if(index>=nums.size()){
-             st.insert(sub);
-             return;
-          }
+        for(int i=index;i<nums.size();i++){
 
-          solve(index+1,sub,nums);
-          sub.push_back(nums[index]);
-          solve(index+1,sub,nums);
-          sub.pop_back();
+              if(index!=i && nums[i-1]==nums[i])continue;
+              sub.push_back(nums[i]);
+              solve(i+1,sub,nums);
+              sub.pop_back();
+        }
+        
     }
      
     vector<vector<int>> subsetsWithDup(vector<int>& nums) {
+
         vector<int>sub;
-        vector<vector<int>>ans;
-
         sort(nums.begin(),nums.end());
-
         solve(0,sub,nums);
-          for(auto v:st)ans.push_back(v);
 
         return ans;
     }
