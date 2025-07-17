@@ -16,6 +16,88 @@
 */
 
 /*************************************************************** C++ *************************************************************************/
+
+//Approach-1 (Simple dfs)
+//T.C : O(N!) - Read the reason above
+//S.C : O(N) to store the result
+
+class Solution {
+public:
+    bool isSafe(int col,int row,vector<string>&bord){
+
+        int n=bord.size();
+
+        int sCol=col;
+        int sRow=row;
+
+
+        while(col>=0 && row>=0){
+
+            if(bord[row][col]=='Q')return false;
+
+            col--;
+            row--;
+
+        }
+
+        col=sCol;
+        row=sRow;
+
+        while(col>=0){
+
+              if(bord[row][col]=='Q')return false;
+              col--;
+        }
+
+        col=sCol;
+        row=sRow;
+
+        while(row<n && col>=0){
+            if(bord[row][col]=='Q')return false;
+             row++;
+             col--;
+        }
+
+        return true;
+
+
+              
+    }
+    void solve(int col,vector<string>&bord,vector<vector<string>>&ans,int n){
+          
+          if(col==n){
+             ans.push_back(bord);
+             return;
+          }
+
+          for(int row=0;row<n;row++){
+
+              if(isSafe(col,row,bord)){
+                 bord[row][col]='Q';
+                 solve(col+1,bord,ans,n);
+                 bord[row][col]='.';
+              }
+
+          }
+              
+    }
+    vector<vector<string>> solveNQueens(int n) {
+        
+        string s(n,'.');
+
+        vector<string>bord;
+
+        for(int i=0;i<n;i++)bord.push_back(s);
+
+        vector<vector<string>>ans;
+
+        solve(0,bord,ans,n);
+
+        return ans;
+
+    }
+};
+
 //Approach-1 (Simple dfs)
 //T.C : O(N!) - Read the reason above
 //S.C : O(N) to store the result
