@@ -3,7 +3,6 @@
    S.C : O(V + E)
 */
 
-
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -18,6 +17,10 @@ using namespace std;
 #define vl vector<int>
 #define pb emplace_back
 #define in(v) for(auto &k:v)cin>>k;
+
+
+int dx[]={0,0,+1,-1,+1,+1,-1,-1};
+int dy[]={+1,-1,0,0,+1,-1,+1,-1};
 
 const int mx=500;
 
