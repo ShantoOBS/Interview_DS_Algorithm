@@ -5,5 +5,7 @@
 3) Graph Variable Storage : http://www.shafaetsplanet.com/?p=211
 4) Graph tarval DFS : http://www.shafaetsplanet.com/?p=973
 5) Connected components : https://cp-algorithms.com/graph/search-for-connected-components.html
-6) 
+6) Graph tarval BFS : http://www.shafaetsplanet.com/?p=604
+7) Bipartite Graph : https://www.geeksforgeeks.org/dsa/what-is-bipartite-graph/
+8) 
 
