@@ -7,8 +7,8 @@
 
 /*************************************************************** C++ ******************************************************/
 //Approach-1 (Normal Recursion & Memoization )
-//T.C : O(n*k)
-//S.C : O(n)
+// T.C : O(n)
+// S.C : O(n)
 
 
 #include <bits/stdc++.h>
@@ -69,7 +69,7 @@ inline void solve(){
 
 } 
 
-// tc : O(n*k)
+// tc : O(n)
 // sc : O(n)
 
 int32_t main() {
